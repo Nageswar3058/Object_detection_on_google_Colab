@@ -1,0 +1,72 @@
+I am working on objection customized model on google colab
+Using /usr/local/lib/python3.6/dist-packages
+Finished processing dependencies for object-detection==0.1
+and with tensorflow 1.15.2
+
+
+erorr i am getting
+
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0x98 in position 1: invalid start byte
+
+code is:
+!pip install tf_slim
+%cd /content/gdrive/My Drive/models/research/object_detection
+os.environ['PYTHONPATH'] += ':/content/gdrive/My Drive/Object_detection/models/research/:/content/gdrive/My Drive/Object_detection/models/research/slim'
+
+!python ./train.py --train_dir=training/ --pipeline_config_path=training/ssd_mobilenet_v1_pets.config --logtostderr
+
+
+
+
+WARNING:tensorflow:From /usr/local/lib/python3.6/dist-packages/absl/app.py:250: main (from __main__) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use object_detection/model_main.py.
+W0904 07:07:25.732869 139875758528384 deprecation.py:323] From /usr/local/lib/python3.6/dist-packages/absl/app.py:250: main (from __main__) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use object_detection/model_main.py.
+WARNING:tensorflow:From /content/gdrive/My Drive/Object_detection/models/research/object_detection/legacy/trainer.py:265: create_global_step (from tf_slim.ops.variables) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please switch to tf.train.create_global_step
+W0904 07:07:25.751493 139875758528384 deprecation.py:323] From /content/gdrive/My Drive/Object_detection/models/research/object_detection/legacy/trainer.py:265: create_global_step (from tf_slim.ops.variables) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please switch to tf.train.create_global_step
+Traceback (most recent call last):
+  File "./train.py", line 186, in <module>
+    tf.app.run()
+  File "/tensorflow-1.15.2/python3.6/tensorflow_core/python/platform/app.py", line 40, in run
+    _run(main=main, argv=argv, flags_parser=_parse_flags_tolerate_undef)
+  File "/usr/local/lib/python3.6/dist-packages/absl/app.py", line 299, in run
+    _run_main(main, args)
+  File "/usr/local/lib/python3.6/dist-packages/absl/app.py", line 250, in _run_main
+    sys.exit(main(argv))
+  File "/tensorflow-1.15.2/python3.6/tensorflow_core/python/util/deprecation.py", line 324, in new_func
+    return func(*args, **kwargs)
+  File "./train.py", line 182, in main
+    graph_hook_fn=graph_rewriter_fn)
+  File "/content/gdrive/My Drive/Object_detection/models/research/object_detection/legacy/trainer.py", line 279, in train
+    train_config.prefetch_queue_capacity, data_augmentation_options)
+  File "/content/gdrive/My Drive/Object_detection/models/research/object_detection/legacy/trainer.py", line 58, in create_input_queue
+    tensor_dict = create_tensor_dict_fn()
+  File "./train.py", line 123, in get_next
+    dataset_builder.build(config)).get_next()
+  File "/content/gdrive/My Drive/Object_detection/models/research/object_detection/builders/dataset_builder.py", line 148, in build
+    decoder = decoder_builder.build(input_reader_config)
+  File "/content/gdrive/My Drive/Object_detection/models/research/object_detection/builders/decoder_builder.py", line 63, in build
+    load_track_id=input_reader_config.load_track_id)
+  File "/content/gdrive/My Drive/Object_detection/models/research/object_detection/data_decoders/tf_example_decoder.py", line 385, in __init__
+    default_value=''),
+  File "/content/gdrive/My Drive/Object_detection/models/research/object_detection/data_decoders/tf_example_decoder.py", line 89, in __init__
+    label_map_proto_file, use_display_name=False)
+  File "/content/gdrive/My Drive/Object_detection/models/research/object_detection/utils/label_map_util.py", line 189, in get_label_map_dict
+    label_map = load_labelmap(label_map_path_or_proto)
+  File "/content/gdrive/My Drive/Object_detection/models/research/object_detection/utils/label_map_util.py", line 156, in load_labelmap
+    label_map_string = fid.read()
+  File "/tensorflow-1.15.2/python3.6/tensorflow_core/python/lib/io/file_io.py", line 128, in read
+    pywrap_tensorflow.ReadFromStream(self._read_buf, length))
+  File "/tensorflow-1.15.2/python3.6/tensorflow_core/python/lib/io/file_io.py", line 98, in _prepare_value
+    return compat.as_str_any(val)
+  File "/tensorflow-1.15.2/python3.6/tensorflow_core/python/util/compat.py", line 123, in as_str_any
+    return as_str(value)
+  File "/tensorflow-1.15.2/python3.6/tensorflow_core/python/util/compat.py", line 93, in as_text
+    return bytes_or_text.decode(encoding)
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0x98 in position 1: invalid start byte
